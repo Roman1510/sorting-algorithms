@@ -1,0 +1,13 @@
+.line {
+  height: 20px;
+  background-color:blue;
+  width:4px;  
+  padding-left: 2px;
+}
+.graph {
+  width: 92%;
+  height: 30px;
+  padding: 50px;
+  display:flex;
+  vertical-align: bottom;
+}
