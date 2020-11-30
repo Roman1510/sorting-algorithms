@@ -1,11 +1,7 @@
 import "./App.css";
+import React, { useState } from "react";
 
-function randomIntFromInterval(min, max) {
-  // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-var randomizeArray = (length, height) => {
+var RandomizeArray = (length, height) => {
   var arr = [];
   for (let index = 0; index < length; index++) {
     arr.push(
@@ -18,15 +14,23 @@ var randomizeArray = (length, height) => {
   }
   return arr;
 };
-var refreshButton = () => {
-  console.log('refresh')
-};
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 function App() {
-  var myArr = randomizeArray(280, 670);
+  const [arr, setArr] = useState(RandomizeArray(700, 670));
+  var RefreshButton = () => {
+    setArr(RandomizeArray(700, 670));
+  };
+
   return (
     <>
-      <button onClick={() => refreshButton()}>Refresh</button>
-      <div className="graph">{myArr}</div>
+      <a onClick={() => RefreshButton()} href="#" class="btn btn-1">
+        Refresh
+      </a>
+
+      <div className="graph">{arr}</div>
     </>
   );
 }
