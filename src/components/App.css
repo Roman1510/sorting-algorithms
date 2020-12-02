@@ -1,15 +1,17 @@
 .line {
-  height: 20px;
-  background-color:blue;
-  width:1px;  
-  padding-left: 2px;
+  background-color:#00bcd4;
+  transition: height 0.2s cubic-bezier(0, 0, 1, 1) 500ms;
 }
 .graph {
   width: 85%;
-  height: 30px;
   padding: 30px;
   display:flex;
-  align-items: baseline;
+  align-items: flex-end;
+  height:550px;
+  justify-content: space-between;
+}
+.divslider {
+  margin-left:20px
 }
 /* BUTTONS */
 .btn {
