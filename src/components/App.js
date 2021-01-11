@@ -32,17 +32,20 @@ function valuetext(value) {
   //here I can update the value of an array I generate
   return `${value}`;
 }
+
 function App() {
   const classes = useStyles();
-  const [arr, setArr] = useState(RandomizeArray(100, 550));
-  var RefreshButton = () => {
-    setArr(RandomizeArray(100, 550));
+  const [arr, setArr] = useState(RandomizeArray(20, 550));
+  const [size,setSize] = useState(20);
+  var RefreshButton = (a) => {
+    console.log(a)
+    setArr(RandomizeArray(a, 550));
   };
-
+  
   return (
     <>
       <div className="divslider">
-        <a onClick={() => RefreshButton()} href="/#" className="btn btn-1">
+        <a onClick={() => RefreshButton(size)} href="/#" className="btn btn-1">
           Refresh
         </a>
         <div className={classes.root}>
@@ -50,15 +53,20 @@ function App() {
             Array size
           </Typography>
           <Slider
-            defaultValue={30}
+            defaultValue={20}
             getAriaValueText={valuetext}
             aria-labelledby="discrete-slider"
             valueLabelDisplay="off"
-            step={1}
+            step={5}
             marks
-            min={1}
-            max={15}
+            min={20}
+            max={100}
             track={false}
+            onChange={(e,val) => {
+              console.log(size)
+              setSize(val);
+              console.log(size)
+            }}
           />
         </div>
       </div>
