@@ -1,9 +1,12 @@
+#root {
+  align-items: center;
+}
 .line {
   background-color:#00bcd4;
   transition: height 0.2s cubic-bezier(0, 0, 1, 1) 500ms;
 }
 .graph {
-  width: 85%;
+  width: 95%;
   padding: 30px;
   display:flex;
   align-items: flex-end;

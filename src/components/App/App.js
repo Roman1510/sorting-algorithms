@@ -4,6 +4,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 
+
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 var RandomizeArray = (length, height) => {
   var arr = [];
   for (let index = 0; index < length; index++) {
@@ -17,10 +22,7 @@ var RandomizeArray = (length, height) => {
   }
   return arr;
 };
-function randomIntFromInterval(min, max) {
-  // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
+
 
 const useStyles = makeStyles({
   root: {
@@ -28,17 +30,13 @@ const useStyles = makeStyles({
   },
 });
 
-function valuetext(value) {
-  //here I can update the value of an array I generate
-  return `${value}`;
-}
+
 
 function App() {
   const classes = useStyles();
   const [arr, setArr] = useState(RandomizeArray(20, 550));
   const [size,setSize] = useState(20);
   var RefreshButton = (a) => {
-    console.log(a)
     setArr(RandomizeArray(a, 550));
   };
   
@@ -54,7 +52,6 @@ function App() {
           </Typography>
           <Slider
             defaultValue={20}
-            getAriaValueText={valuetext}
             aria-labelledby="discrete-slider"
             valueLabelDisplay="off"
             step={5}
