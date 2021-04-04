@@ -2,8 +2,8 @@ import "./App.css";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
-  // min and max included
-  //helper function:
+// min and max included
+//helper function:
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -31,11 +31,18 @@ const useStyles = makeStyles({
 function App() {
   const classes = useStyles();
   const [arr, setArr] = useState(RandomizeArray(20, 550));
-  const [size,setSize] = useState(20);
+  const [size, setSize] = useState(20);
   var RefreshButton = (a) => {
     setArr(RandomizeArray(a, 550));
   };
-  
+  //sorting methods
+
+  function mergeSort() {
+    console.log(arr)
+  }
+  function quickSort() {}
+  function heapSort() {}
+  function bubbleSort() {}
   return (
     <>
       <div className="divslider">
@@ -43,6 +50,7 @@ function App() {
           Refresh
         </a>
         <div className={classes.root}>
+          {/* SLIDER */}
           <Slider
             defaultValue={20}
             aria-labelledby="discrete-slider"
@@ -52,12 +60,42 @@ function App() {
             min={20}
             max={100}
             track={false}
-            onChange={(_,val) => {
-              console.log(size)
+            onChange={(_, val) => {
+              console.log(size);
               setSize(val);
-              console.log(size)
+              console.log(size);
             }}
           />
+        </div>
+        <div className="sorting-buttons">
+          <button
+            onClick={() => {
+              mergeSort();
+            }}
+          >
+            Merge Sort
+          </button>
+          <button
+            onClick={() => {
+              quickSort();
+            }}
+          >
+            Quick Sort
+          </button>
+          <button
+            onClick={() => {
+              heapSort();
+            }}
+          >
+            Heap Sort
+          </button>
+          <button
+            onClick={() => {
+              bubbleSort();
+            }}
+          >
+            Bubble Sort
+          </button>
         </div>
       </div>
 
