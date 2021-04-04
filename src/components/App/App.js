@@ -1,14 +1,13 @@
 import "./App.css";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
-
-
-function randomIntFromInterval(min, max) {
   // min and max included
+  //helper function:
+function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+//randomization of the array using the helper function (USAGE: just pass length and height to the function):
 var RandomizeArray = (length, height) => {
   var arr = [];
   for (let index = 0; index < length; index++) {
@@ -22,15 +21,12 @@ var RandomizeArray = (length, height) => {
   }
   return arr;
 };
-
-
+//style for the slider:
 const useStyles = makeStyles({
   root: {
     width: 200,
   },
 });
-
-
 
 function App() {
   const classes = useStyles();
@@ -47,9 +43,6 @@ function App() {
           Refresh
         </a>
         <div className={classes.root}>
-          <Typography id="discrete-slider" gutterBottom>
-            Array size
-          </Typography>
           <Slider
             defaultValue={20}
             aria-labelledby="discrete-slider"
@@ -59,7 +52,7 @@ function App() {
             min={20}
             max={100}
             track={false}
-            onChange={(e,val) => {
+            onChange={(_,val) => {
               console.log(size)
               setSize(val);
               console.log(size)
