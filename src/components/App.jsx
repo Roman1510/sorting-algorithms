@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
 import Graph from "./Graph"
 let size = 20;
@@ -17,42 +16,36 @@ var randomizeArray = (length, height) => {
   }
   return randArray;
 };
+//sorting methods{
+var mergeSort = () => {
+  console.log();
+};
 
-//for App component
+var quickSort = () => {
+  console.log();
+};
+var heapSort = () => {
+  console.log();
+};
+var bubbleSort = () => {
+  console.log();
+};
+//}
+
 function App() {
-  //style for the slider:
-  const useStyles = makeStyles({
-    root: {
-      width: 200,
-    },
-  });
-  const classes = useStyles();
+
   const [arr, setArr] = useState(randomizeArray(size, 550));
   var RefreshButton = (a) => {
     setArr(randomizeArray(a, 550));
   };
-  //sorting methods
 
-  var mergeSort = () => {
-    console.log(arr);
-  };
-
-  var quickSort = () => {
-    console.log(arr);
-  };
-  var heapSort = () => {
-    console.log(arr);
-  };
-  var bubbleSort = () => {
-    console.log(arr);
-  };
   return (
     <>
       <div className="divslider">
         <a onClick={() => RefreshButton(size)} href="/#" className="btn btn-1">
           Refresh
         </a>
-        <div className={classes.root}>
+        <div style={{width:'200px'}}>
           {/* SLIDER */}
           <Slider
             defaultValue={20}
