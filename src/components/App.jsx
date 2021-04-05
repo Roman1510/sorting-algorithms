@@ -1,48 +1,51 @@
-import "./App.css";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Slider from "@material-ui/core/Slider";
+import Graph from "./Graph"
+let size = 20;
+
 // min and max included
 //helper function:
-function randomIntFromInterval(min, max) {
+var randomIntFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
-//randomization of the array using the helper function (USAGE: just pass length and height to the function):
-var RandomizeArray = (length, height) => {
-  var arr = [];
-  for (let index = 0; index < length; index++) {
-    arr.push(
-      <div
-        className="line"
-        key={index}
-        style={{ height: randomIntFromInterval(1, height), width: "5px" }}
-      ></div>
-    );
-  }
-  return arr;
 };
-//style for the slider:
-const useStyles = makeStyles({
-  root: {
-    width: 200,
-  },
-});
+//randomization of the array using the helper function (USAGE: just pass length and height to the function):
+var randomizeArray = (length, height) => {
+  var randArray = [];
+  for (let index = 0; index < length; index++) {
+    randArray.push(randomIntFromInterval(1, height));
+  }
+  return randArray;
+};
 
+//for App component
 function App() {
+  //style for the slider:
+  const useStyles = makeStyles({
+    root: {
+      width: 200,
+    },
+  });
   const classes = useStyles();
-  const [arr, setArr] = useState(RandomizeArray(20, 550));
-  const [size, setSize] = useState(20);
+  const [arr, setArr] = useState(randomizeArray(size, 550));
   var RefreshButton = (a) => {
-    setArr(RandomizeArray(a, 550));
+    setArr(randomizeArray(a, 550));
   };
   //sorting methods
 
-  function mergeSort() {
-    console.log(arr)
-  }
-  function quickSort() {}
-  function heapSort() {}
-  function bubbleSort() {}
+  var mergeSort = () => {
+    console.log(arr);
+  };
+
+  var quickSort = () => {
+    console.log(arr);
+  };
+  var heapSort = () => {
+    console.log(arr);
+  };
+  var bubbleSort = () => {
+    console.log(arr);
+  };
   return (
     <>
       <div className="divslider">
@@ -61,9 +64,7 @@ function App() {
             max={100}
             track={false}
             onChange={(_, val) => {
-              console.log(size);
-              setSize(val);
-              console.log(size);
+              size = val;
             }}
           />
         </div>
@@ -99,7 +100,9 @@ function App() {
         </div>
       </div>
 
-      <div className="graph">{arr}</div>
+      <div className="graph">
+        <Graph graphArray={arr} />
+      </div>
     </>
   );
 }
