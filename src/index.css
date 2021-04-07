@@ -17,6 +17,8 @@ code {
 }
 .line {
   background-color:#00bcd4;
+  transition: height .5s;
+  /* to use this feature fully I will need to make dynamic render in react: first I render the array, then I will give the rest of the elements 0 value for .1s, then I will make it normal as randomized, so that the animation will take place normally */
 }
 .graph {
   width: 95%;
@@ -24,7 +26,7 @@ code {
   display:flex;
   align-items: flex-end;
   height:550px;
-  justify-content: space-between;
+  justify-content: space-between;  
 }
 .divslider {
   margin-left:20px
@@ -107,3 +109,5 @@ code {
 }
 
 /* BUTTONS END */
+
+
