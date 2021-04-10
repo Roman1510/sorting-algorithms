@@ -3,7 +3,6 @@ import Slider from "@material-ui/core/Slider";
 import Graph from "./Graph";
 let size = 20;
 
-
 var randomIntFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -16,23 +15,41 @@ var randomizeArray = (length, height) => {
   return randArray;
 };
 
+//algorithms
+
 function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
+  function animate(array,delay){
+    setTimeout(()=>{
+      setArr([...array])
+    },delay)
+  }
+  function sortingBubble() {
+    let array = arr;
+    let search = false;
+    let temp = 0;
+    do {
+      search = false;
+      for (var i = 0; i < arr.length; i++) {
+        // eslint-disable-next-line no-loop-func
+        if (i < array.length - 1) {
+          if (array[i] > array[i + 1]) {
+            search = true;
+            temp = array[i];
+            array[i] = array[i + 1];
+            array[i + 1] = temp;
+            animate(array,i*200);
+            console.log("array", array);
+          }
+        }
+      }
+    } while (search === true);
+  }
   var RefreshButton = (a) => {
     setArr(randomizeArray(a, 550));
   };
   function handleClick() {
-    var arr1 = [3,1,2]
-    var arr2 = [...arr1];
-    console.log('arr2 before',arr2)
-    console.log('arr1 before',arr1)
-    arr2.sort((a,b)=>a-b)
-    console.log('arr2 after',arr2)
-    console.log('arr1 after',arr1)
-    setArr((e)=>{
-      console.log(...arr)
-      return [...arr].sort((a,b)=>a-b)
-    })
+    sortingBubble();
   }
   return (
     <>
@@ -56,7 +73,7 @@ function App() {
           />
         </div>
         <div className="sorting-buttons">
-          <button onClick={handleClick}>Merge Sort</button>
+          <button onClick={handleClick}>Bubble Sort</button>
         </div>
       </div>
       <Graph graphArray={arr} />

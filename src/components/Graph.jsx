@@ -1,7 +1,6 @@
 import React from "react";
 
 function Graph(props) {
-  console.log('entered this graph')
   return (
     <div className="graph">
       {props.graphArray.map((e, i) => {
