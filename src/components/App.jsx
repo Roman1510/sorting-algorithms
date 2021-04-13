@@ -19,37 +19,12 @@ var randomizeArray = (length, height) => {
 
 function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
-  function animate(array,delay){
-    setTimeout(()=>{
-      setArr([...array])
-    },delay)
-  }
-  function sortingBubble() {
-    let array = arr;
-    let search = false;
-    let temp = 0;
-    do {
-      search = false;
-      for (var i = 0; i < arr.length; i++) {
-        // eslint-disable-next-line no-loop-func
-        if (i < array.length - 1) {
-          if (array[i] > array[i + 1]) {
-            search = true;
-            temp = array[i];
-            array[i] = array[i + 1];
-            array[i + 1] = temp;
-            animate(array,i*200);
-            console.log("array", array);
-          }
-        }
-      }
-    } while (search === true);
-  }
+  
   var RefreshButton = (a) => {
     setArr(randomizeArray(a, 550));
   };
   function handleClick() {
-    sortingBubble();
+    console.log('clicked')
   }
   return (
     <>
