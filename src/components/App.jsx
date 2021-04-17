@@ -63,29 +63,31 @@ function App() {
     }, arrayBars.length * DELAY);
   }
   function animateArrayUpdate(animations) {
-    console.log('adsfasf')
+    console.log("adsfasf");
     if (isSorting) return;
     setIsSorting(true);
     animations.forEach(([comparison, swapped], index) => {
-      setTimeout(() => {
-        if (!swapped) {
-          if (comparison.length === 2) {
-            const [i, j] = comparison;
-            animateArrayAccess(i);
-            animateArrayAccess(j);
+      (function () {
+        window.animationsTimerId = setTimeout(() => {
+          if (!swapped) {
+            if (comparison.length === 2) {
+              const [i, j] = comparison;
+              animateArrayAccess(i);
+              animateArrayAccess(j);
+            } else {
+              const [i] = comparison;
+              animateArrayAccess(i);
+            }
           } else {
-            const [i] = comparison;
-            animateArrayAccess(i);
+            setArr((prevArr) => {
+              const [k, newValue] = comparison;
+              const newArr = [...prevArr];
+              newArr[k] = newValue;
+              return newArr;
+            });
           }
-        } else {
-          setArr((prevArr) => {
-            const [k, newValue] = comparison;
-            const newArr = [...prevArr];
-            newArr[k] = newValue;
-            return newArr;
-          });
-        }
-      }, index * DELAY);
+        }, index * DELAY);
+      })();
     });
     setTimeout(() => {
       animateSortedArray();
@@ -93,11 +95,12 @@ function App() {
   }
 
   var RefreshButton = (a) => {
+    animateArrayUpdate([])
     setArr(randomizeArray(a, 550));
+    setIsSorted(true);
+    clearTimeout(window.animationsTimerId);
+    
   };
-  function test() {
-    console.log(getInsertionSortAnimations([3, 2, 1]));
-  }
   function handleClick(type) {
     let animations;
     switch (type) {
@@ -141,7 +144,6 @@ function App() {
             />
           </div>
           <input id="color-picker" type="color" />
-          <button onClick={test}></button>
         </div>
 
         <div className="sorting-buttons">
@@ -169,16 +171,16 @@ function App() {
         </div>
       </div>
       <div className="graph" ref={containerRef}>
-      {arr.map((e, i) => {
-        return (
-          <div
-            key={i}
-            className="line"
-            style={{ height: e, width: "5px" }}
-          ></div>
-        );
-      })}
-    </div>
+        {arr.map((e, i) => {
+          return (
+            <div
+              key={i}
+              className="line"
+              style={{ height: e, width: "5px" }}
+            ></div>
+          );
+        })}
+      </div>
     </>
   );
 }
