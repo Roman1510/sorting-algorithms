@@ -49,7 +49,7 @@ function App() {
               }}
             />
           </div>
-          <input type="color" />
+          <input id="color-picker" type="color" />
         </div>
 
         <div className="sorting-buttons">

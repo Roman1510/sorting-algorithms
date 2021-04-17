@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,33 +9,36 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 #root {
   align-items: center;
 }
 .line {
-  background-color:#00bcd4;
-  transition: height .5s;
-  /* to use this feature fully I will need to make dynamic render in react: first I render the array, then I will give the rest of the elements 0 value for .1s, then I will make it normal as randomized, so that the animation will take place normally */
+  background-color: #000000;
+  transition: height 0.5s;
+  background-color: #0ff;
+  border-radius: 50%;
+  box-shadow: inset 10px 0 20px #f0f, inset -9px 0 20px #0ff, 0 0 18px #fff,
+    -8px 0 15px #f0f;
 }
 .graph {
   width: 95%;
   padding: 30px;
-  display:flex;
+  display: flex;
   align-items: flex-end;
-  height:550px;
-  justify-content: space-between;  
+  height: 550px;
+  justify-content: space-between;
 }
 .divslider {
-  margin-left:20px
+  margin-left: 20px;
 }
 /* BUTTONS */
 .btn {
   text-decoration: none;
   border: none;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-size: inherit;
   color: inherit;
   background: none;
@@ -55,7 +58,7 @@ code {
 }
 
 .btn:after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
   -webkit-transition: all 0.3s;
@@ -65,7 +68,7 @@ code {
 
 /* Pseudo elements for icons */
 .btn:before {
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -75,12 +78,10 @@ code {
   -webkit-font-smoothing: antialiased;
 }
 
-
 /* Icon separator */
 
-
 .btn-sep:before {
-  background: rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 /* Button 1 */
@@ -114,5 +115,7 @@ code {
   width: 300px;
   display: flex;
   justify-content: space-between;
-  
+}
+
+#color-picker {
 }
