@@ -2,7 +2,7 @@ import React from "react";
 
 function Graph(props) {
   return (
-    <div className="graph">
+    <div className="graph" >
       {props.graphArray.map((e, i) => {
         return (
           <div
