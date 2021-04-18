@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Slider from "@material-ui/core/Slider";
 import Graph from "./Graph";
 import randomizeArray from "../randomizing/RandomizeArray.js";
@@ -14,22 +14,10 @@ const SORTED_COLOUR = "#00ffff";
 function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
   const [isSorting, setIsSorting] = useState(false);
-  const [isSorted, setIsSorted] = useState(false);
   const containerRef = useRef(null);
-  useEffect(initialiseArray, []);
-  function resetArrayColour() {
-    const arrayBars = containerRef.current.children;
-    for (let i = 0; i < arr.length; i++) {
-      const arrayBarStyle = arrayBars[i].style;
-      arrayBarStyle.backgroundColor = "";
-    }
-  }
-  function initialiseArray() {
-    if (isSorting) return;
-    if (isSorted) resetArrayColour();
-    setIsSorted(false);
-    setArr(randomizeArray(20, 550));
-  }
+
+
+
   function animateArrayAccess(index) {
     const arrayBars = containerRef.current.children;
     const arrayBarStyle = arrayBars[index].style;
@@ -49,7 +37,6 @@ function App() {
       }, i * DELAY);
     }
     setTimeout(() => {
-      setIsSorted(true);
       setIsSorting(false);
     }, arrayBars.length * DELAY);
   }
@@ -85,7 +72,6 @@ function App() {
   }
   var RefreshButton = (a) => {
     setArr(randomizeArray(a, 550));
-    setIsSorted(true);
     clearTimeout(window.animationsTimerId);
   };
   function handleClick(type) {
