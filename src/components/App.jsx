@@ -83,9 +83,8 @@ function App() {
       animateSortedArray();
     }, animations.length * DELAY);
   }
-  var RefreshButton = (e) => {
-    e.preventDefault();
-    setArr(randomizeArray(SIZE, 550));
+  var RefreshButton = (a) => {
+    setArr(randomizeArray(a, 550));
     setIsSorted(true);
     clearTimeout(window.animationsTimerId);
   };
@@ -112,7 +111,7 @@ function App() {
   return (
     <>
       <div className="divslider">
-        <a onClick={() => RefreshButton} href="/#" className="btn btn-1">
+        <a onClick={() => RefreshButton(SIZE)} href="/#" className="btn btn-1">
           Refresh
         </a>
         <div className="adjust">
