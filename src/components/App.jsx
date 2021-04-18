@@ -111,9 +111,9 @@ function App() {
   return (
     <>
       <div className="divslider">
-        <a href="/#" onClick={() => RefreshButton(SIZE)}  className="btn btn-1">
+        <button onClick={() => RefreshButton(SIZE)}  className="btn btn-1">
           Refresh
-        </a>
+        </button>
         <div className="adjust">
           <div style={{ width: "200px" }}>
             <Slider
