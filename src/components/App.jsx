@@ -6,13 +6,10 @@ import { getInsertionSortAnimations } from "../algorithms/InsertionSort";
 import { getMergeSortAnimations } from "../algorithms/MergeSort";
 import { getQuickSortAnimations } from "../algorithms/QuickSort";
 
-let size = 20; //setting the initial size of the array
-const ARR_LEN = 100;
-const MIN_NUM = 5;
-const MAX_NUM = 80;
+let SIZE = 20; //setting the initial size of the array
 const DELAY = 5;
-const ACCESSED_COLOUR = "turquoise";
-const SORTED_COLOUR = "green";
+const ACCESSED_COLOUR = "#ffc0cb";
+const SORTED_COLOUR = "#00ffff";
 
 function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
@@ -31,12 +28,7 @@ function App() {
     if (isSorting) return;
     if (isSorted) resetArrayColour();
     setIsSorted(false);
-    const arr = [];
-    for (let i = 0; i < ARR_LEN; i++) {
-      arr.push((MAX_NUM - MIN_NUM) * (i / ARR_LEN) + MIN_NUM);
-    }
-    shuffle(arr);
-    setArr(arr);
+    setArr(randomizeArray(20, 550));
   }
   function animateArrayAccess(index) {
     const arrayBars = containerRef.current.children;
@@ -45,17 +37,16 @@ function App() {
       arrayBarStyle.backgroundColor = ACCESSED_COLOUR;
     }, DELAY);
     setTimeout(() => {
-      arrayBarStyle.backgroundColor = "";
+      arrayBarStyle.backgroundColor = "red";
     }, DELAY * 2);
   }
   function animateSortedArray() {
     const arrayBars = containerRef.current.children;
     for (let i = 0; i < arrayBars.length; i++) {
       const arrayBarStyle = arrayBars[i].style;
-      setTimeout(
-        () => (arrayBarStyle.backgroundColor = SORTED_COLOUR),
-        i * DELAY
-      );
+      setTimeout(() => {
+        arrayBarStyle.backgroundColor = SORTED_COLOUR;
+      }, i * DELAY);
     }
     setTimeout(() => {
       setIsSorted(true);
@@ -63,7 +54,6 @@ function App() {
     }, arrayBars.length * DELAY);
   }
   function animateArrayUpdate(animations) {
-    console.log("adsfasf");
     if (isSorting) return;
     setIsSorting(true);
     animations.forEach(([comparison, swapped], index) => {
@@ -93,13 +83,10 @@ function App() {
       animateSortedArray();
     }, animations.length * DELAY);
   }
-
   var RefreshButton = (a) => {
-    animateArrayUpdate([])
     setArr(randomizeArray(a, 550));
     setIsSorted(true);
     clearTimeout(window.animationsTimerId);
-    
   };
   function handleClick(type) {
     let animations;
@@ -124,7 +111,7 @@ function App() {
   return (
     <>
       <div className="divslider">
-        <a onClick={() => RefreshButton(size)} href="/#" className="btn btn-1">
+        <a onClick={() => RefreshButton(SIZE)} href="/#" className="btn btn-1">
           Refresh
         </a>
         <div className="adjust">
@@ -139,7 +126,7 @@ function App() {
               max={100}
               track={false}
               onChange={(_, val) => {
-                size = val;
+                SIZE = val;
               }}
             />
           </div>
@@ -170,27 +157,9 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="graph" ref={containerRef}>
-        {arr.map((e, i) => {
-          return (
-            <div
-              key={i}
-              className="line"
-              style={{ height: e, width: "5px" }}
-            ></div>
-          );
-        })}
-      </div>
+      <Graph graphArray={arr} forwardedRef={containerRef} />
     </>
   );
 }
-const shuffle = (arr) => {
-  for (let i = arr.length - 1; i >= 0; i--) {
-    const randomIndex = Math.floor(Math.random() * (i + 1));
-    const temp = arr[i];
-    arr[i] = arr[randomIndex];
-    arr[randomIndex] = temp;
-  }
-};
 
 export default App;

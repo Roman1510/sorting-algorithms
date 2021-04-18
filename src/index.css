@@ -16,12 +16,11 @@ code {
   align-items: center;
 }
 .line {
-  background-color: #000000;
+  background-color: #f0f;
   transition: height 0.5s;
   background-color: #0ff;
   border-radius: 50%;
-  box-shadow: inset 10px 0 20px #f0f, inset -9px 0 20px #0ff, 0 0 18px #fff,
-    -8px 0 15px #f0f;
+
 }
 .graph {
   width: 95%;
