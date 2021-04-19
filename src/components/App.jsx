@@ -15,9 +15,9 @@ function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
   const [isSorting, setIsSorting] = useState(false);
   const containerRef = useRef(null);
-
-
-
+  var dt = new Date(2021, 4, 19, 17, 32, 0);
+  console.log(Math.floor(dt.getTime() / 1000) - 1);
+  console.log(Math.floor(Date.now() / 1000));
   function animateArrayAccess(index) {
     const arrayBars = containerRef.current.children;
     const arrayBarStyle = arrayBars[index].style;
@@ -97,7 +97,7 @@ function App() {
   return (
     <>
       <div className="divslider">
-        <button onClick={() => RefreshButton(SIZE)}  className="btn btn-1">
+        <button onClick={() => RefreshButton(SIZE)} className="btn btn-1">
           Refresh
         </button>
         <div className="adjust">
@@ -119,8 +119,9 @@ function App() {
           <input id="color-picker" type="color" />
         </div>
 
-        <div className="sorting-buttons">
+        <div>
           <button
+            className="sorting-buttons"
             onClick={() => {
               handleClick("merge");
             }}
@@ -128,6 +129,7 @@ function App() {
             Merge Sort
           </button>
           <button
+            className="sorting-buttons"
             onClick={() => {
               handleClick("insertion");
             }}
@@ -135,6 +137,7 @@ function App() {
             Insertion Sort
           </button>
           <button
+            className="sorting-buttons"
             onClick={() => {
               handleClick("quick");
             }}
