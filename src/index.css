@@ -133,3 +133,6 @@ code {
 .sorting-buttons:active{
   background-color: #7fb881;
 }
+.picker{
+  float: right;
+}

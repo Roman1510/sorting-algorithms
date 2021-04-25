@@ -106,8 +106,7 @@ function App() {
         <button onClick={() => RefreshButton(SIZE)} className="btn btn-1">
           Refresh
         </button>
-        <div className="adjust">
-          <div style={{ width: "200px" }}>
+        <div style={{ width: "200px" }}>
             <Slider
               defaultValue={20}
               aria-labelledby="discrete-slider"
@@ -122,10 +121,15 @@ function App() {
               }}
             />
           </div>
-          <GithubPicker
-            value={mainColor}
-            onChangeComplete={handleColorChange}
-          />
+        <div className="adjust">
+          
+          <div className="picker">
+            <GithubPicker
+              value={mainColor}
+              width="400px"
+              onChangeComplete={handleColorChange}
+            />
+          </div>
         </div>
 
         <div>
