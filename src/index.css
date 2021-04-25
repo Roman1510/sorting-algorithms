@@ -118,3 +118,18 @@ code {
 
 #color-picker {
 }
+.sorting-buttons {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.sorting-buttons:hover{
+  background-color: #295f2b;
+}
+.sorting-buttons:active{
+  background-color: #7fb881;
+}

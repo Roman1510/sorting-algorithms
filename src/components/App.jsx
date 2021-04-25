@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Slider from "@material-ui/core/Slider";
 import Graph from "./Graph";
 import randomizeArray from "../randomizing/RandomizeArray.js";
@@ -14,23 +14,15 @@ const SORTED_COLOUR = "#00ffff";
 function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
   const [isSorting, setIsSorting] = useState(false);
+<<<<<<< HEAD
   const [isSorted, setIsSorted] = useState(false);
   const [mainColor, setMainColor] = useState("00ffff")
+=======
+>>>>>>> 17373050faceaf566132f98881b255e370594555
   const containerRef = useRef(null);
-  useEffect(initialiseArray, []);
-  function resetArrayColour() {
-    const arrayBars = containerRef.current.children;
-    for (let i = 0; i < arr.length; i++) {
-      const arrayBarStyle = arrayBars[i].style;
-      arrayBarStyle.backgroundColor = "";
-    }
-  }
-  function initialiseArray() {
-    if (isSorting) return;
-    if (isSorted) resetArrayColour();
-    setIsSorted(false);
-    setArr(randomizeArray(20, 550));
-  }
+  var dt = new Date(2021, 4, 19, 17, 32, 0);
+  console.log(Math.floor(dt.getTime() / 1000) - 1);
+  console.log(Math.floor(Date.now() / 1000));
   function animateArrayAccess(index) {
     const arrayBars = containerRef.current.children;
     const arrayBarStyle = arrayBars[index].style;
@@ -50,7 +42,6 @@ function App() {
       }, i * DELAY);
     }
     setTimeout(() => {
-      setIsSorted(true);
       setIsSorting(false);
     }, arrayBars.length * DELAY);
   }
@@ -86,7 +77,6 @@ function App() {
   }
   var RefreshButton = (a) => {
     setArr(randomizeArray(a, 550));
-    setIsSorted(true);
     clearTimeout(window.animationsTimerId);
   };
   function handleColorChange(event){
@@ -115,7 +105,7 @@ function App() {
   return (
     <>
       <div className="divslider">
-        <button onClick={() => RefreshButton(SIZE)}  className="btn btn-1">
+        <button onClick={() => RefreshButton(SIZE)} className="btn btn-1">
           Refresh
         </button>
         <div className="adjust">
@@ -137,8 +127,9 @@ function App() {
           <input value={mainColor} onChange={handleColorChange} id="color-picker" type="color" />
         </div>
 
-        <div className="sorting-buttons">
+        <div>
           <button
+            className="sorting-buttons"
             onClick={() => {
               handleClick("merge");
             }}
@@ -146,6 +137,7 @@ function App() {
             Merge Sort
           </button>
           <button
+            className="sorting-buttons"
             onClick={() => {
               handleClick("insertion");
             }}
@@ -153,6 +145,7 @@ function App() {
             Insertion Sort
           </button>
           <button
+            className="sorting-buttons"
             onClick={() => {
               handleClick("quick");
             }}
