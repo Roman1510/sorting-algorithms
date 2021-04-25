@@ -5,7 +5,7 @@ import randomizeArray from "../randomizing/RandomizeArray.js";
 import { getInsertionSortAnimations } from "../algorithms/InsertionSort";
 import { getMergeSortAnimations } from "../algorithms/MergeSort";
 import { getQuickSortAnimations } from "../algorithms/QuickSort";
-
+import { GithubPicker } from "react-color";
 let SIZE = 20; //setting the initial size of the array
 const DELAY = 5;
 const ACCESSED_COLOUR = "#ffc0cb";
@@ -14,11 +14,9 @@ const SORTED_COLOUR = "#00ffff";
 function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
   const [isSorting, setIsSorting] = useState(false);
-<<<<<<< HEAD
+
   const [isSorted, setIsSorted] = useState(false);
-  const [mainColor, setMainColor] = useState("00ffff")
-=======
->>>>>>> 17373050faceaf566132f98881b255e370594555
+  const [mainColor, setMainColor] = useState("00ffff");
   const containerRef = useRef(null);
   var dt = new Date(2021, 4, 19, 17, 32, 0);
   console.log(Math.floor(dt.getTime() / 1000) - 1);
@@ -79,8 +77,8 @@ function App() {
     setArr(randomizeArray(a, 550));
     clearTimeout(window.animationsTimerId);
   };
-  function handleColorChange(event){
-    setMainColor(event.target.value)
+  function handleColorChange(color) {
+    setMainColor(color.hex);
   }
   function handleClick(type) {
     let animations;
@@ -124,7 +122,10 @@ function App() {
               }}
             />
           </div>
-          <input value={mainColor} onChange={handleColorChange} id="color-picker" type="color" />
+          <GithubPicker
+            value={mainColor}
+            onChangeComplete={handleColorChange}
+          />
         </div>
 
         <div>
