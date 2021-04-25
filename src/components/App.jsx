@@ -15,6 +15,7 @@ function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
   const [isSorting, setIsSorting] = useState(false);
   const [isSorted, setIsSorted] = useState(false);
+  const [mainColor, setMainColor] = useState("00ffff")
   const containerRef = useRef(null);
   useEffect(initialiseArray, []);
   function resetArrayColour() {
@@ -37,7 +38,7 @@ function App() {
       arrayBarStyle.backgroundColor = ACCESSED_COLOUR;
     }, DELAY);
     setTimeout(() => {
-      arrayBarStyle.backgroundColor = "red";
+      arrayBarStyle.backgroundColor = mainColor;
     }, DELAY * 2);
   }
   function animateSortedArray() {
@@ -88,6 +89,9 @@ function App() {
     setIsSorted(true);
     clearTimeout(window.animationsTimerId);
   };
+  function handleColorChange(event){
+    setMainColor(event.target.value)
+  }
   function handleClick(type) {
     let animations;
     switch (type) {
@@ -130,7 +134,7 @@ function App() {
               }}
             />
           </div>
-          <input id="color-picker" type="color" />
+          <input value={mainColor} onChange={handleColorChange} id="color-picker" type="color" />
         </div>
 
         <div className="sorting-buttons">
