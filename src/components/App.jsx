@@ -107,31 +107,20 @@ function App() {
           Refresh
         </button>
         <div style={{ width: "200px" }}>
-            <Slider
-              defaultValue={20}
-              aria-labelledby="discrete-slider"
-              valueLabelDisplay="off"
-              step={5}
-              marks
-              min={20}
-              max={100}
-              track={false}
-              onChange={(_, val) => {
-                SIZE = val;
-              }}
-            />
-          </div>
-        <div className="adjust">
-          
-          <div className="picker">
-            <GithubPicker
-              value={mainColor}
-              width="400px"
-              onChangeComplete={handleColorChange}
-            />
-          </div>
+          <Slider
+            defaultValue={20}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="off"
+            step={5}
+            marks
+            min={20}
+            max={100}
+            track={false}
+            onChange={(_, val) => {
+              SIZE = val;
+            }}
+          />
         </div>
-
         <div>
           <button
             className="sorting-buttons"
@@ -157,6 +146,13 @@ function App() {
           >
             Quick Sort
           </button>
+          <div className="picker">
+            <GithubPicker
+              value={mainColor}
+              width="400px"
+              onChangeComplete={handleColorChange}
+            />
+          </div>
         </div>
       </div>
       <Graph graphArray={arr} forwardedRef={containerRef} />
