@@ -27,7 +27,7 @@ code {
   padding: 30px;
   display: flex;
   align-items: flex-end;
-  height: 550px;
+  height: 500px;
   justify-content: space-between;
 }
 .divslider {
@@ -134,5 +134,5 @@ code {
   background-color: #7fb881;
 }
 .picker{
-  float: right;
+  
 }

@@ -106,6 +106,14 @@ function App() {
         <button onClick={() => RefreshButton(SIZE)} className="btn btn-1">
           Refresh
         </button>
+        <div className="picker">
+          <GithubPicker
+            value={mainColor}
+            width="400px"
+            onChangeComplete={handleColorChange}
+            triangle="false"
+          />
+        </div>  
         <div style={{ width: "200px" }}>
           <Slider
             defaultValue={20}
@@ -121,6 +129,7 @@ function App() {
             }}
           />
         </div>
+        
         <div>
           <button
             className="sorting-buttons"
@@ -144,16 +153,10 @@ function App() {
               handleClick("quick");
             }}
           >
-            Quick Sort
+            Quick Sorts
           </button>
-          <div className="picker">
-            <GithubPicker
-              value={mainColor}
-              width="400px"
-              onChangeComplete={handleColorChange}
-            />
-          </div>
         </div>
+        
       </div>
       <Graph graphArray={arr} forwardedRef={containerRef} />
     </>
