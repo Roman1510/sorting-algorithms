@@ -5,6 +5,7 @@ import randomizeArray from "../randomizing/RandomizeArray.js";
 import { getInsertionSortAnimations } from "../algorithms/InsertionSort";
 import { getMergeSortAnimations } from "../algorithms/MergeSort";
 import { getQuickSortAnimations } from "../algorithms/QuickSort";
+import { getBubbleSortAnimations } from "../algorithms/BubbleSort";
 import { GithubPicker } from "react-color";
 let SIZE = 20; //setting the initial size of the array
 const DELAY = 5;
@@ -15,7 +16,6 @@ function App() {
   const [arr, setArr] = useState(randomizeArray(20, 550));
   const [isSorting, setIsSorting] = useState(false);
 
-  const [isSorted, setIsSorted] = useState(false);
   const [mainColor, setMainColor] = useState("00ffff");
   const containerRef = useRef(null);
   var dt = new Date(2021, 4, 19, 17, 32, 0);
@@ -95,6 +95,11 @@ function App() {
         animations = getQuickSortAnimations(arr);
         animateArrayUpdate(animations);
         break;
+      case "bubble":
+        // animations = getBubbleSortAnimations(arr);
+        // animateArrayUpdate(animations);
+        alert('Not yet implemented!')
+        break;
       default:
         console.log("default");
         break;
@@ -113,7 +118,7 @@ function App() {
             onChangeComplete={handleColorChange}
             triangle="false"
           />
-        </div>  
+        </div>
         <div style={{ width: "200px" }}>
           <Slider
             defaultValue={20}
@@ -129,7 +134,7 @@ function App() {
             }}
           />
         </div>
-        
+
         <div>
           <button
             className="sorting-buttons"
@@ -155,8 +160,15 @@ function App() {
           >
             Quick Sorts
           </button>
+          <button
+            className="sorting-buttons"
+            onClick={() => {
+              handleClick("bubble");
+            }}
+          >
+            Bubble Sort
+          </button>
         </div>
-        
       </div>
       <Graph graphArray={arr} forwardedRef={containerRef} />
     </>
