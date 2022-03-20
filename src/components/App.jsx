@@ -1,108 +1,108 @@
-import React, { useState, useRef } from "react";
-import Slider from "@material-ui/core/Slider";
-import Graph from "./Graph";
-import randomizeArray from "../randomizing/RandomizeArray.js";
-import { getInsertionSortAnimations } from "../algorithms/InsertionSort";
-import { getMergeSortAnimations } from "../algorithms/MergeSort";
-import { getQuickSortAnimations } from "../algorithms/QuickSort";
-import { getBubbleSortAnimations } from "../algorithms/BubbleSort";
-import { GithubPicker } from "react-color";
-let SIZE = 20; //setting the initial size of the array
-const DELAY = 5;
-const ACCESSED_COLOUR = "#ffc0cb";
-const SORTED_COLOUR = "#00ffff";
+import React, { useState, useRef } from 'react'
+import Slider from '@mui/material/Slider'
+import Graph from './Graph'
+import randomizeArray from '../randomizing/RandomizeArray.js'
+import { getInsertionSortAnimations } from '../algorithms/InsertionSort'
+import { getMergeSortAnimations } from '../algorithms/MergeSort'
+import { getQuickSortAnimations } from '../algorithms/QuickSort'
+import { getBubbleSortAnimations } from '../algorithms/BubbleSort'
+import { GithubPicker } from 'react-color'
+let SIZE = 20 //setting the initial size of the array
+const DELAY = 5
+const ACCESSED_COLOUR = '#ffc0cb'
+const SORTED_COLOUR = '#00ffff'
 
 function App() {
-  const [arr, setArr] = useState(randomizeArray(20, 550));
-  const [isSorting, setIsSorting] = useState(false);
+  const [arr, setArr] = useState(randomizeArray(20, 550))
+  const [isSorting, setIsSorting] = useState(false)
 
-  const [mainColor, setMainColor] = useState("00ffff");
-  const containerRef = useRef(null);
-  var dt = new Date(2021, 4, 19, 17, 32, 0);
-  console.log(Math.floor(dt.getTime() / 1000) - 1);
-  console.log(Math.floor(Date.now() / 1000));
+  const [mainColor, setMainColor] = useState('00ffff')
+  const containerRef = useRef(null)
+  var dt = new Date(2021, 4, 19, 17, 32, 0)
+  console.log(Math.floor(dt.getTime() / 1000) - 1)
+  console.log(Math.floor(Date.now() / 1000))
   function animateArrayAccess(index) {
-    const arrayBars = containerRef.current.children;
-    const arrayBarStyle = arrayBars[index].style;
+    const arrayBars = containerRef.current.children
+    const arrayBarStyle = arrayBars[index].style
     setTimeout(() => {
-      arrayBarStyle.backgroundColor = ACCESSED_COLOUR;
-    }, DELAY);
+      arrayBarStyle.backgroundColor = ACCESSED_COLOUR
+    }, DELAY)
     setTimeout(() => {
-      arrayBarStyle.backgroundColor = mainColor;
-    }, DELAY * 2);
+      arrayBarStyle.backgroundColor = mainColor
+    }, DELAY * 2)
   }
   function animateSortedArray() {
-    const arrayBars = containerRef.current.children;
+    const arrayBars = containerRef.current.children
     for (let i = 0; i < arrayBars.length; i++) {
-      const arrayBarStyle = arrayBars[i].style;
+      const arrayBarStyle = arrayBars[i].style
       setTimeout(() => {
-        arrayBarStyle.backgroundColor = SORTED_COLOUR;
-      }, i * DELAY);
+        arrayBarStyle.backgroundColor = SORTED_COLOUR
+      }, i * DELAY)
     }
     setTimeout(() => {
-      setIsSorting(false);
-    }, arrayBars.length * DELAY);
+      setIsSorting(false)
+    }, arrayBars.length * DELAY)
   }
   function animateArrayUpdate(animations) {
-    if (isSorting) return;
-    setIsSorting(true);
+    if (isSorting) return
+    setIsSorting(true)
     animations.forEach(([comparison, swapped], index) => {
-      (function () {
+      ;(function () {
         window.animationsTimerId = setTimeout(() => {
           if (!swapped) {
             if (comparison.length === 2) {
-              const [i, j] = comparison;
-              animateArrayAccess(i);
-              animateArrayAccess(j);
+              const [i, j] = comparison
+              animateArrayAccess(i)
+              animateArrayAccess(j)
             } else {
-              const [i] = comparison;
-              animateArrayAccess(i);
+              const [i] = comparison
+              animateArrayAccess(i)
             }
           } else {
             setArr((prevArr) => {
-              const [k, newValue] = comparison;
-              const newArr = [...prevArr];
-              newArr[k] = newValue;
-              return newArr;
-            });
+              const [k, newValue] = comparison
+              const newArr = [...prevArr]
+              newArr[k] = newValue
+              return newArr
+            })
           }
-        }, index * DELAY);
-      })();
-    });
+        }, index * DELAY)
+      })()
+    })
     setTimeout(() => {
-      animateSortedArray();
-    }, animations.length * DELAY);
+      animateSortedArray()
+    }, animations.length * DELAY)
   }
   var RefreshButton = (a) => {
-    setArr(randomizeArray(a, 550));
-    clearTimeout(window.animationsTimerId);
-  };
+    setArr(randomizeArray(a, 550))
+    clearTimeout(window.animationsTimerId)
+  }
   function handleColorChange(color) {
-    setMainColor(color.hex);
+    setMainColor(color.hex)
   }
   function handleClick(type) {
-    let animations;
+    let animations
     switch (type) {
-      case "merge":
-        animations = getMergeSortAnimations(arr);
-        animateArrayUpdate(animations);
-        break;
-      case "insertion":
-        animations = getInsertionSortAnimations(arr);
-        animateArrayUpdate(animations);
-        break;
-      case "quick":
-        animations = getQuickSortAnimations(arr);
-        animateArrayUpdate(animations);
-        break;
-      case "bubble":
+      case 'merge':
+        animations = getMergeSortAnimations(arr)
+        animateArrayUpdate(animations)
+        break
+      case 'insertion':
+        animations = getInsertionSortAnimations(arr)
+        animateArrayUpdate(animations)
+        break
+      case 'quick':
+        animations = getQuickSortAnimations(arr)
+        animateArrayUpdate(animations)
+        break
+      case 'bubble':
         // animations = getBubbleSortAnimations(arr);
         // animateArrayUpdate(animations);
         alert('Not yet implemented!')
-        break;
+        break
       default:
-        console.log("default");
-        break;
+        console.log('default')
+        break
     }
   }
   return (
@@ -119,7 +119,7 @@ function App() {
             triangle="false"
           />
         </div>
-        <div style={{ width: "200px" }}>
+        <div style={{ width: '200px' }}>
           <Slider
             defaultValue={20}
             aria-labelledby="discrete-slider"
@@ -130,7 +130,7 @@ function App() {
             max={100}
             track={false}
             onChange={(_, val) => {
-              SIZE = val;
+              SIZE = val
             }}
           />
         </div>
@@ -139,7 +139,7 @@ function App() {
           <button
             className="sorting-buttons"
             onClick={() => {
-              handleClick("merge");
+              handleClick('merge')
             }}
           >
             Merge Sort
@@ -147,7 +147,7 @@ function App() {
           <button
             className="sorting-buttons"
             onClick={() => {
-              handleClick("insertion");
+              handleClick('insertion')
             }}
           >
             Insertion Sort
@@ -155,7 +155,7 @@ function App() {
           <button
             className="sorting-buttons"
             onClick={() => {
-              handleClick("quick");
+              handleClick('quick')
             }}
           >
             Quick Sorts
@@ -163,7 +163,7 @@ function App() {
           <button
             className="sorting-buttons"
             onClick={() => {
-              handleClick("bubble");
+              handleClick('bubble')
             }}
           >
             Bubble Sort
@@ -172,7 +172,7 @@ function App() {
       </div>
       <Graph graphArray={arr} forwardedRef={containerRef} />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
