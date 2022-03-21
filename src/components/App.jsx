@@ -7,20 +7,17 @@ import { getMergeSortAnimations } from '../algorithms/MergeSort'
 import { getQuickSortAnimations } from '../algorithms/QuickSort'
 import { getBubbleSortAnimations } from '../algorithms/BubbleSort'
 import { GithubPicker } from 'react-color'
-let SIZE = 20 //setting the initial size of the array
-const DELAY = 5
-const ACCESSED_COLOUR = '#ffc0cb'
-const SORTED_COLOUR = '#00ffff'
 
 function App() {
+  const DELAY = 5
+  const ACCESSED_COLOUR = '#ffc0cb'
+  const SORTED_COLOUR = '#00ffff'
+  const [size] = useState(20) //setting the initial size of the array
   const [arr, setArr] = useState(randomizeArray(20, 550))
   const [isSorting, setIsSorting] = useState(false)
-
   const [mainColor, setMainColor] = useState('00ffff')
   const containerRef = useRef(null)
-  var dt = new Date(2021, 4, 19, 17, 32, 0)
-  console.log(Math.floor(dt.getTime() / 1000) - 1)
-  console.log(Math.floor(Date.now() / 1000))
+
   function animateArrayAccess(index) {
     const arrayBars = containerRef.current.children
     const arrayBarStyle = arrayBars[index].style
@@ -96,8 +93,8 @@ function App() {
         animateArrayUpdate(animations)
         break
       case 'bubble':
-        // animations = getBubbleSortAnimations(arr);
-        // animateArrayUpdate(animations);
+        animations = getBubbleSortAnimations(arr)
+        animateArrayUpdate(animations)
         alert('Not yet implemented!')
         break
       default:
@@ -108,7 +105,7 @@ function App() {
   return (
     <>
       <div className="divslider">
-        <button onClick={() => RefreshButton(SIZE)} className="btn btn-1">
+        <button onClick={() => RefreshButton(size)} className="btn btn-1">
           Refresh
         </button>
         <div className="picker">
@@ -130,7 +127,7 @@ function App() {
             max={100}
             track={false}
             onChange={(_, val) => {
-              SIZE = val
+              size = val
             }}
           />
         </div>

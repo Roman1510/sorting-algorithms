@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react'
 
 function Graph(props) {
   return (
-    <div className="graph" ref={props.forwardedRef} >
+    <div className="graph" ref={props.forwardedRef}>
       {props.graphArray.map((e, i) => {
         return (
           <div
             key={i}
             className="line"
-            style={{ height: e, width: "5px" }}
+            style={{ height: e, width: '5px' }}
           ></div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
-export default Graph;
+export default Graph
