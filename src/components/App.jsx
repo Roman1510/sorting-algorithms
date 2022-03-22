@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react'
 import Slider from '@mui/material/Slider'
 import Graph from './Graph/Graph'
