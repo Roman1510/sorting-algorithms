@@ -1,4 +1,5 @@
 import React from 'react'
+import './GraphStyle.css'
 
 function Graph(props) {
   return (
